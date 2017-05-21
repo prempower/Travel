@@ -1,0 +1,10 @@
+.done-true {
+  text-decoration: None;
+  color: grey;
+}
+
+.done-false {
+  text-decoration: blink;
+  color: green;
+  
+}

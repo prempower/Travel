@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="travel">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+    <script src="JS/travel.js"></script>
+    <link rel="stylesheet" href="CSS/todo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Optional theme -->
+  </head>
+  <body>
+    <h2>Travel</h2>
+    <div ng-controller="ClientControl as clientList">
+      <span>{{clientList.remaining()}} of {{clientList.clients.length}} remaining</span>
+      [ <a href="" ng-click="clientList.archive()">archive</a> ]
+      <ul >
+        <li ng-repeat="client in clientList.clients">
+          <label class="checkbox">
+          <input type="checkbox" ng-model="client.done">
+             <span class="done-{{client.done}}">{{client.fname}} {{client.lname}}</span>
+                     <button type="button"  class="btn btn-default btn-sm" ng-click="clientList.remove($index,client)">
+          <span class="glyphicon glyphicon-minus"></span>Remove</button>
+            
+          </label>
+        </li>
+      </ul>
+      <form ng-submit="clientList.addClient()">
+        <hr> 
+        <input type="text" ng-model="clientList.fname"  size="15"
+               placeholder="First Name">
+         <input type="text" ng-model="clientList.lname"  size="15"
+               placeholder="Last Name"> <br> 
+          <input type="text" ng-model="clientList.state"  size="15"
+               placeholder="state"> 
+           <input type="text" ng-model="clientList.country"  size="15"
+               placeholder="country"><br>                               
+        <input class="btn-primary" type="submit" value="Add Client">
+       
+      </form>
+      
+      <form ng-submit="clientList.removeClient()">
+        <hr> 
+        <input type="text" ng-model="clientList.firstName"  size="15"
+               placeholder="First Name">
+         <input type="text" ng-model="clientList.lastName"  size="15"
+               placeholder="Last Name"> <br>                            
+        <input class="btn-primary" type="submit" value="Remove Client">
+       
+      </form>
+      <hr>
+      <table  border="1"  style="border-collapse: separate; border-spacing: 2px;">
+		<tr>
+		<th>FirstName&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		<th>LastName&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		<th>State&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		<th>Country&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		</tr>
+		 
+		<tr ng-repeat="cl in clientList.customerList">
+		<td>{{ cl.firstName }}</td>
+		<td>{{ cl.lastName }}</td>
+		<td>{{ cl.homeState }}</td>
+		<td>{{ cl.homeCountry }}</td>
+		</tr>
+		</table> 
+
+    </div>
+  </body>
+</html>
